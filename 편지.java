@@ -14,7 +14,7 @@ message	result
 "I love you~"	22
 */
 
-class Solution {
+class Solutiona {
     public int solution(String message) {
         char a[] = message.toCharArray();
         return a.length * 2;

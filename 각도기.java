@@ -7,7 +7,7 @@
 평각 : angle = 180
 */
 
-class Solution {
+class Solutiona {
     public int solution(int angle) {
         int answer = 0;
         if(0 < angle &&  angle < 90){
