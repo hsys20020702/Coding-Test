@@ -1,0 +1,74 @@
+class Solution {
+    public String solution(String new_id) {
+        String answer = new_id.toLowerCase(); 
+        answer = answer.replace("..", "."); 
+
+        if (answer.charAt(0) == '.') {
+            answer = answer.substring(1);
+        }
+        if (answer.charAt(answer.length() - 1) == '.') {
+            answer = answer.substring(0, answer.length() - 1);
+        }
+        
+        if (answer.equals("")) answer = "a";
+        if (answer.length() >= 16) {
+            answer = answer.substring(0, 15);
+        }
+        
+        if (answer.length() <= 2) {
+            while (answer.length() < 3) {
+                answer += answer.charAt(answer.length() - 1);
+            }
+        }
+        
+        return answer;
+    }
+}
+/*
+일단 가장 먼저 문제가 되는 것은 replace이다 replace를 사용하니까 ... 이 입력으로 들어오면 앞 ..이 .로 바뀌는 문제 발생
+그리고 두 번째 문제는 chatAt()을 사용해서 검증하려고 했으나 substring(1)을 하면 빈 문자열이 되어 Exception을 발생시킨다 -> 2번째 문제 발생
+
+또 다른 문제는 substring()으로 15개씩 자르고 났는데 마침표 확인을 누락한 것이 문제 -> 3번째 문제
+
+일단 다른 문제가 있는 것은 모르겠으나 한 번 실행
+*/
+
+
+
+class Solution {
+    public String solution(String new_id) {
+        String answer = new_id.toLowerCase();
+
+        answer = answer.replaceAll("[^-_.a-z0-9]", "");
+        
+
+        answer = answer.replaceAll("\\.{2,}", ".");
+        
+
+        answer = answer.replaceAll("^\\.|\\.$", "");
+        
+
+        if (answer.isEmpty()) {
+            answer = "a";
+        }
+        
+
+        if (answer.length() >= 16) {
+            answer = answer.substring(0, 15);
+            answer = answer.replaceAll("\\.$", ""); 
+        }
+        
+
+        if (answer.length() <= 2) {
+            char lastChar = answer.charAt(answer.length() - 1);
+            while (answer.length() < 3) {
+                answer += lastChar;
+            }
+        }
+        
+        return answer;
+    }
+}
+/*
+다행히 잘 실행되는 것 같다
+*/
